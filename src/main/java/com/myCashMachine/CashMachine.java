@@ -11,19 +11,20 @@ import java.util.Locale;
  */
 public class CashMachine {
     public static final String RESOURCE_PATH = "";
+
     public static void main(String[] args) throws IOException {
         Locale.setDefault(Locale.ENGLISH);
         Operation operation;
 
-        try
-        {
+        try {
             CommandExecutor.execute(Operation.LOGIN);
-            do{
+            do {
                 operation = ConsoleHelper.askOperation();
                 CommandExecutor.execute(operation);
-            } while(!(operation.equals(Operation.EXIT)));
+            } while ((!(operation.equals(Operation.EXIT)) || (!CommandExecutor.exitFlag)));
 
-    }catch (InterruptOperationException exception) {
+        } catch (InterruptOperationException exception) {
+            ConsoleHelper.printExitMessage();
         }
     }
 }

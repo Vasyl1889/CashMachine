@@ -13,21 +13,22 @@ import java.util.ResourceBundle;
  */
 class InfoCommand implements Command {
     private ResourceBundle res = ResourceBundle.getBundle(CashMachine.RESOURCE_PATH + "info_en");
+
     @Override
     public void execute() {
         ConsoleHelper.writeMessage(res.getString("before"));
         Collection<CurrencyManipulator> listCurrencyManipulators = CurrencyManipulatorFactory.getAllCurrencyManipulators();
 
-        if(listCurrencyManipulators.isEmpty())
+        if (listCurrencyManipulators.isEmpty())
             ConsoleHelper.writeMessage(res.getString("no.money"));
 
-            for(CurrencyManipulator cm: listCurrencyManipulators ){
-                if(cm.hasMoney()){
+        for (CurrencyManipulator cm : listCurrencyManipulators) {
+            if (cm.hasMoney()) {
                 ConsoleHelper.writeMessage(cm.getCurrencyCode() + " " + cm.getTotalAmount());
-                } else{
-                    ConsoleHelper.writeMessage(res.getString("no.money"));
-                }
+            } else {
+                ConsoleHelper.writeMessage(res.getString("no.money"));
             }
+        }
 
     }
 }

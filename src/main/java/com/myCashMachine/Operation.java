@@ -10,8 +10,8 @@ public enum Operation {
     WITHDRAW,
     EXIT;
 
-    public static Operation getAllowableOperationByOrdinal(Integer i){
-        switch(i){
+    public static Operation getAllowableOperationByOrdinal(Integer i) {
+        switch (i) {
             case 1:
                 return Operation.INFO;
             case 2:

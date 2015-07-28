@@ -10,12 +10,13 @@ import java.util.Map;
  */
 public class CurrencyManipulatorFactory {
     private static Map<String, CurrencyManipulator> currencyManipulators = new HashMap<String, CurrencyManipulator>();
-    public static CurrencyManipulator getManipulatorByCurrencyCode(String currencyCode){
-        if(currencyManipulators.containsKey(currencyCode)) {
+
+    public static CurrencyManipulator getManipulatorByCurrencyCode(String currencyCode) {
+        if (currencyManipulators.containsKey(currencyCode)) {
             return currencyManipulators.get(currencyCode);
         } else {
             CurrencyManipulator currentManipulator = new CurrencyManipulator(currencyCode);
-            currencyManipulators.put(currencyCode,currentManipulator);
+            currencyManipulators.put(currencyCode, currentManipulator);
 
             return currentManipulator;
         }
@@ -24,7 +25,7 @@ public class CurrencyManipulatorFactory {
     private CurrencyManipulatorFactory() {
     }
 
-    public static Collection getAllCurrencyManipulators(){
+    public static Collection getAllCurrencyManipulators() {
         return currencyManipulators.values();
     }
 }

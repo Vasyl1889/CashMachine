@@ -19,33 +19,30 @@ public class ConsoleHelper {
         System.out.println(message);
     }
 
-    public static String readString() throws InterruptOperationException
-    {
-        String readline= null;
+    public static String readString() throws InterruptOperationException {
+        String readline = null;
         try {
             readline = bufferedReader.readLine();
-            if ("EXIT".equalsIgnoreCase(readline)){
+            if ("EXIT".equalsIgnoreCase(readline)) {
                 ConsoleHelper.writeMessage(res.getString("the.end"));
                 throw new InterruptOperationException();
             }
-        } catch(IOException ignored) {
-            }
+        } catch (IOException ignored) {
+        }
 
         return readline;
     }
 
-    public static String askCurrencyCode() throws InterruptOperationException
-    {
+    public static String askCurrencyCode() throws InterruptOperationException {
         ConsoleHelper.writeMessage(res.getString("choose.currency.code"));
-        while ((code = readString().trim()).length()!=3) {
+        while ((code = readString().trim()).length() != 3) {
             ConsoleHelper.writeMessage(res.getString("invalid.data"));
         }
 
         return code.toUpperCase();
     }
 
-    public static String[] getValidTwoDigits(String currencyCode) throws InterruptOperationException
-    {
+    public static String[] getValidTwoDigits(String currencyCode) throws InterruptOperationException {
         String[] argArray = new String[2];
 
         boolean flag = false;
@@ -55,7 +52,7 @@ public class ConsoleHelper {
             String inputLine = readString();
             argArray = inputLine.split(" ");
 
-            if(argArray.length != 2 || Integer.parseInt(argArray[0]) <= 0 || Integer.parseInt(argArray[1]) <= 0) {
+            if (argArray.length != 2 || Integer.parseInt(argArray[0]) <= 0 || Integer.parseInt(argArray[1]) <= 0) {
                 ConsoleHelper.writeMessage(res.getString("invalid.data"));
             } else {
                 flag = true;
@@ -65,8 +62,7 @@ public class ConsoleHelper {
         return argArray;
     }
 
-    public static Operation askOperation() throws InterruptOperationException
-    {
+    public static Operation askOperation() throws InterruptOperationException {
         String numberOperation;
         Operation operation = null;
         ConsoleHelper.writeMessage(res.getString("choose.operation"));
@@ -75,7 +71,7 @@ public class ConsoleHelper {
                 res.getString("operation.DEPOSIT"), Operation.DEPOSIT.ordinal(),
                 res.getString("operation.WITHDRAW"), Operation.WITHDRAW.ordinal(),
                 res.getString("operation.EXIT"), Operation.EXIT.ordinal()));
-        while(true) {
+        while (true) {
             try {
                 numberOperation = readString();
                 operation = Operation.getAllowableOperationByOrdinal(Integer.valueOf(numberOperation));
@@ -86,5 +82,9 @@ public class ConsoleHelper {
         }
 
         return operation;
+    }
+
+    public static void printExitMessage() {
+        ConsoleHelper.writeMessage(res.getString("the.end"));
     }
 }

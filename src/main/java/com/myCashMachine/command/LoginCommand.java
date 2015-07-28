@@ -14,21 +14,20 @@ public class LoginCommand implements Command {
     private ResourceBundle res = ResourceBundle.getBundle(CashMachine.RESOURCE_PATH + "login_en");
 
     @Override
-    public void execute() throws InterruptOperationException
-    {
+    public void execute() throws InterruptOperationException {
         ConsoleHelper.writeMessage(res.getString("before"));
         ConsoleHelper.writeMessage(res.getString("specify.data"));
-        while(true){
+        while (true) {
             String curentCartNumber = ConsoleHelper.readString();
 
-            if(validCreditCards.containsKey(curentCartNumber)){
-                while(true){
+            if (validCreditCards.containsKey(curentCartNumber)) {
+                while (true) {
                     //ConsoleHelper.writeMessage("Please enter pinCode.");
                     String curentPinCode = ConsoleHelper.readString();
 
-                    if(curentPinCode.equals(validCreditCards.getString(curentCartNumber))){
+                    if (curentPinCode.equals(validCreditCards.getString(curentCartNumber))) {
                         ConsoleHelper.writeMessage(String.format(res.getString("success.format"), curentCartNumber));
-                            break;
+                        break;
                     } else {
                         ConsoleHelper.writeMessage(String.format(res.getString("not.verified.format"), curentCartNumber));
                         ConsoleHelper.writeMessage(res.getString("try.again.or.exit"));

@@ -12,6 +12,7 @@ import java.util.Map;
 public class CommandExecutor {
     private static Map<Operation, Command> commandMap = new HashMap<>();
     public static Boolean exitFlag = false;
+
     static {
         commandMap.put(Operation.LOGIN, new LoginCommand());
         commandMap.put(Operation.INFO, new InfoCommand());
@@ -19,11 +20,12 @@ public class CommandExecutor {
         commandMap.put(Operation.WITHDRAW, new WithdrawCommand());
         commandMap.put(Operation.EXIT, new ExitCommand());
     }
+
     private CommandExecutor() {
 
     }
-    public static final void execute(Operation operation) throws InterruptOperationException
-    {
+
+    public static final void execute(Operation operation) throws InterruptOperationException {
         commandMap.get(operation).execute();
     }
 }
